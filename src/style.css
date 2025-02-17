@@ -7,11 +7,22 @@ body {
   margin: 0;
 }
 
+
 .page {
   height: 100vh;
+  position: relative;
 }
+
 
 .color {
   height: 100%;
   transition: background var(--timer);
+}
+
+
+.controls {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
