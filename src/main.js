@@ -1,18 +1,28 @@
 import './style.css';
 import generateColor from './generateColor.js';
 
+const colorElement = document.querySelector('.color');
 
-let counter = 1;
+function setBackground(element) {
+  element.style.background = `${generateColor()}`;
+}
 
-function render() {
-  const colorElement = document.querySelector('.color');
-  colorElement.style.background = `${generateColor()}`;
-  colorElement.addEventListener('transitionend', (e) => {
-    if (counter > 10) return;
-    colorElement.style.background = `${generateColor()}`;
-    counter += 1;
-  });
+function render() {  
+  const callback = () => setBackground(colorElement);
+  colorElement.addEventListener('transitionend', callback);
+  callback();
+  return () => colorElement.removeEventListener('transitionend', callback);
 }
 
 
-render();
+let reset;
+const startBtn = document.querySelector('.controls_start');
+const stopBtn = document.querySelector('.controls_stop');
+
+startBtn.addEventListener('click', () => {
+  reset = render();
+});
+
+stopBtn.addEventListener('click', () => {
+  reset();
+});
