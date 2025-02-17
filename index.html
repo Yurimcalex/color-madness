@@ -8,15 +8,21 @@
   </head>
   <body>
     <div class="page">
-      <div class="color">
-        
-      </div>
+      <div class="color"></div>
 
       <div class="controls">
         <button class="controls_start">Start</button>
         <button class="controls_stop">Stop</button>
+        
+        <div class="controls_speed speed-range">
+          <label  class="speed-range_label" for="transition_speed">Color speed:</label>
+          <span class="speed-range_value">0.1s</span>
+          <input id="transition_speed" type="range" min="0.1" max="3" step="any" />
+          <span class="speed-range_value">3s</span>
+        </div>
       </div>
     </div>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
