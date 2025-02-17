@@ -26,8 +26,14 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, .5);
+  color: white;
 }
 
 
@@ -36,11 +42,11 @@ body {
   align-items: center;
 }
 
-.speed-range_label {
+.speed-range__label {
   font-size: 0.9em;
 }
 
-.speed-range_value {
+.speed-range__value {
   padding: 3px;
   font-size: 0.7em;
 }
