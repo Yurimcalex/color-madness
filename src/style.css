@@ -13,12 +13,13 @@ body {
   width: 100%;
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   align-items: stretch;
 }
 
 
 .color {
-  flex: 1;
+  flex: 50% 1 0;
   transition: background var(--timer);
 }
 
