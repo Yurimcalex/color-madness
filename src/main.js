@@ -16,8 +16,9 @@ function render() {
 
 
 let reset;
-const startBtn = document.querySelector('.controls_start');
-const stopBtn = document.querySelector('.controls_stop');
+const startBtn = document.querySelector('.controls__start');
+const stopBtn = document.querySelector('.controls__stop');
+const speedRange = document.getElementById('transition_speed');
 
 startBtn.addEventListener('click', () => {
   reset = render();
