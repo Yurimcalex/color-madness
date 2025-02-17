@@ -1,5 +1,6 @@
 :root {
   --timer: 1s;
+  --width: 50%;
 }
 
 body {
@@ -19,7 +20,7 @@ body {
 
 
 .color {
-  flex: 50% 1 0;
+  flex: var(--width) 1 0;
   transition: background var(--timer);
 }
 
