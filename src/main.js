@@ -1,17 +1,37 @@
 import './style.css';
 import generateColor from './generateColor.js';
 
-const colorElement = document.querySelector('.color');
+const colorElements = document.querySelectorAll('.color');
+update(colorElements);
+
+
+function update(colorElements) {
+  for (let element of colorElements) {
+    setBackground(element);
+  }
+}
+
 
 function setBackground(element) {
   element.style.background = `${generateColor()}`;
 }
 
-function render() {  
-  const callback = () => setBackground(colorElement);
-  colorElement.addEventListener('transitionend', callback);
-  callback();
-  return () => colorElement.removeEventListener('transitionend', callback);
+
+function render(colorElements) {
+  const callbacks = [];
+
+  for (let element of colorElements) {
+    const callback = () => setBackground(element);
+    element.addEventListener('transitionend', callback);
+    callbacks.push(callback);
+    callback();
+  }
+  
+  return () => {
+    for (let element of colorElements) {
+      element.removeEventListener('transitionend', callbacks.shift());
+    }
+  };
 }
 
 
@@ -22,7 +42,7 @@ const speedRange = document.getElementById('transition_speed');
 const root = document.documentElement;
 
 startBtn.addEventListener('click', () => {
-  reset = render();
+  reset = render(colorElements);
 });
 
 stopBtn.addEventListener('click', () => {
