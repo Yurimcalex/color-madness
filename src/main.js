@@ -19,6 +19,7 @@ let reset;
 const startBtn = document.querySelector('.controls__start');
 const stopBtn = document.querySelector('.controls__stop');
 const speedRange = document.getElementById('transition_speed');
+const root = document.documentElement;
 
 startBtn.addEventListener('click', () => {
   reset = render();
@@ -26,4 +27,8 @@ startBtn.addEventListener('click', () => {
 
 stopBtn.addEventListener('click', () => {
   reset();
+});
+
+speedRange.addEventListener("input", (e) => {
+  root.style.setProperty('--timer', `${e.target.value}s`);
 });
