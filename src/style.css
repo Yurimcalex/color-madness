@@ -53,6 +53,26 @@ body {
   align-self: flex-end;
 }
 
+.controls__start,
+.controls__stop {
+  border: none;
+  outline: none;
+  padding: 7px 12px;
+  border-radius: 5px;
+  background: rgba(30, 30, 30, .8);
+  color: #dddddd;
+  cursor: pointer;
+}
+
+.controls__start {
+  margin-right: 10px;
+}
+
+.controls__start:hover,
+.controls__stop:hover {
+  background: #252525;
+}
+
 
 .range {
   display: flex;
