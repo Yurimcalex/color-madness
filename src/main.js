@@ -31,3 +31,7 @@ controls.attachAction('amount', 'change', (e) => {
   colors.render(value, cssData.transitionTime);
   document.getElementById('colors_number_result').textContent = value;
 });
+
+controls.attachAction('open', 'click', () => {
+  document.querySelector('.controls').classList.toggle('controls_hidden');
+});

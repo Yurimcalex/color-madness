@@ -6,6 +6,7 @@ export default class Controls {
 		this.stop = document.querySelector('.controls__stop');
 		this.speed = document.getElementById('transition_speed');
 		this.amount = document.getElementById('colors_number');
+		this.open = document.querySelector('.controls__opener');
 		this.speed.value = transitionSpeed;
 		this.amount.value = colorAmount;
 	}
