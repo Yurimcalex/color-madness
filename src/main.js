@@ -4,7 +4,7 @@ import Controls from './Controls.js';
 import CSSData from './CSSData.js';
 
 
-const initalColorAmount = 1;
+const initalColorAmount = 7;
 const cssData = new CSSData();
 const colors = new Colors();
 const controls = new Controls(cssData.transitionTime, initalColorAmount);
