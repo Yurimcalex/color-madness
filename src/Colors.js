@@ -53,22 +53,22 @@ export default class Colors {
 		}
 	}
 
-	run() {
+	run(speed) {
 		if (this.detachTransition) return;
 		this.attachTransition();
 		setTimeout(() => {
 			this.update();
-		}, 0);
+		}, speed + 100);
 	}
 
 	stop() {
 		this.resetTransition();
 	}
 
-	render(amount) {
+	render(amount, speed) {
 		this.resetTransition();
 		this.remove();
 		this.create(amount);
-		this.run();
+		this.run(speed);
 	}
 }
