@@ -2,10 +2,24 @@ import './style.css';
 //import generateColor from './generateColor.js';
 
 import Colors from './Colors.js';
+import Controls from './Controls.js';
 
 
 const colors = new Colors();
+const controls = new Controls();
+
+
 colors.render(1);
+
+
+controls.attachAction('start', 'click', () => {
+  colors.run();
+});
+
+controls.attachAction('stop', 'click', () => {
+  colors.stop();
+});
+
 
 
 // let colorElements = document.querySelectorAll('.color');
