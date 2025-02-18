@@ -67,7 +67,9 @@ let reset;
 const startBtn = document.querySelector('.controls__start');
 const stopBtn = document.querySelector('.controls__stop');
 const speedRange = document.getElementById('transition_speed');
+speedRange.value = '1';
 const numberRange = document.getElementById('colors_number');
+numberRange.value = '1';
 const root = document.documentElement;
 
 startBtn.addEventListener('click', () => {
