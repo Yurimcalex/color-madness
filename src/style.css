@@ -42,16 +42,16 @@ body {
 }
 
 
-.speed-range {
+.range {
   display: flex;
   align-items: center;
 }
 
-.speed-range__label {
+.range__label {
   font-size: 0.9em;
 }
 
-.speed-range__value {
+.range__value {
   padding: 3px;
   font-size: 0.7em;
 }
