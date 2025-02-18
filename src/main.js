@@ -81,7 +81,7 @@ stopBtn.addEventListener('click', () => {
 
 speedRange.addEventListener("input", (e) => {
   root.style.setProperty('--timer', `${e.target.value}s`);
-  document.getElementById('transition_speed_result').textContent = Number(e.target.value).toFixed(2);
+  document.getElementById('transition_speed_result').textContent = Number(e.target.value).toFixed(2) + 's';
 });
 
 numberRange.addEventListener("change", (e) => {
