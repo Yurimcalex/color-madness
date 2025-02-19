@@ -7,35 +7,22 @@ export default class Colors {
 		this.elements = [];
 	}
 
-	run(speed, isIsolated) {
-		if (isIsolated) {
-			this.elements.forEach((element, ind) => element.run(speed[ind]));
-		} else {
-			this.elements.forEach(element => element.run(speed));
-		}
+	run(speeds) {
+		this.elements.forEach((element, ind) => element.run(speeds[ind]));
 	}
 
 	stop() {
 		this.elements.forEach(element => element.stop());
 	}
 
-	render(amount, speed, isIsolated) {
+	render(speeds, isIsolated) {
 		this.elements.forEach(element => element.remove());
 		this.elements = [];
 
-		if (isIsolated) {
-			this.elements = speed.map(s => {
-				const color = new Color();
-				color.render(this.node, s, isIsolated);
-				return color;
-			});
-
-		} else {
-			while(amount--) {
-				const color = new Color();
-				color.render(this.node, speed);
-				this.elements.push(color);
-			}
-		}
+		this.elements = speeds.map(speed => {
+			const color = new Color();
+			color.render(this.node, speed, isIsolated);
+			return color;
+		});
 	}
 }
