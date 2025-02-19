@@ -32,9 +32,12 @@ export default class Color {
 		this.element.remove();
 	}
 
-	create(node) {
+	create(node, speed, isIsolated) {
 		const div = document.createElement('div');
 		div.classList.add('color');
+		if (isIsolated) {
+			div.style.transitionDuration = `${speed}s`;
+		}
 		node.prepend(div);
 		this.element = div;
 	}
@@ -44,15 +47,15 @@ export default class Color {
 		this.attachTransition();
 		setTimeout(() => {
 			this.update();
-		}, speed + 100);
+		}, (speed) + 100);
 	}
 
 	stop() {
 		this.resetTransition();
 	}
 
-	render(node, speed) {
-		this.create(node);
+	render(node, speed, isIsolated) {
+		this.create(node, speed, isIsolated);
 		this.run(speed);
 	}
 }
