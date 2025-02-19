@@ -26,14 +26,10 @@ function mapTransitionTime(amount, speed) {
 }
 
 
-colors.render(initalColorAmount, cssData.transitionTime);
+colors.render(settings.speeds);
 
 controls.attachAction('start', 'click', () => {
-  if (controls.randomSpeed.checked) {
-    colors.run(settings.speeds, true);
-  } else {
-    colors.run(cssData.transitionTime);
-  }
+  colors.run(settings.speeds);
 });
 
 controls.attachAction('stop', 'click', () => {
@@ -43,6 +39,8 @@ controls.attachAction('stop', 'click', () => {
 controls.attachAction('speed', 'input', (e) => {
   const value = e.target.value;
   cssData.setTransitionTime(+value);
+  settings.speeds = mapTransitionTime(settings.amount, +value);
+  colors.render(settings.speeds);
   document.getElementById('transition_speed_result').textContent = Number(value).toFixed(2) + 's';
 });
 
@@ -51,10 +49,10 @@ controls.attachAction('amount', 'change', (e) => {
   cssData.setColorWidth(value);
   if (controls.randomSpeed.checked) {
     const speeds = mapTransitionTime(value);
-    colors.render(value, speeds, true);
+    colors.render(speeds, true);
     settings.speeds = speeds;
   } else {
-    colors.render(value, cssData.transitionTime);
+    colors.render(mapTransitionTime(value, cssData.transitionTime));
   }
   document.getElementById('colors_number_result').textContent = value;
   settings.amount = value;
@@ -67,9 +65,11 @@ controls.attachAction('open', 'click', () => {
 controls.attachAction('randomSpeed', 'change', (e) => {
   if (e.target.checked) {
     const speeds = mapTransitionTime(settings.amount);
-    colors.render(settings.amount, speeds, true);
+    colors.render(speeds, true);
     settings.speeds = speeds;
+    controls.speed.disabled = true;
   } else {
-    colors.render(settings.amount, cssData.transitionTime);
+    colors.render(settings.speeds);
+    controls.speed.disabled = false;
   }
 });
