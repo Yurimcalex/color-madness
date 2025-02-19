@@ -1,4 +1,3 @@
-//import generateColor from './generateColor.js';
 import Color from './Color.js';
 
 
@@ -8,22 +7,35 @@ export default class Colors {
 		this.elements = [];
 	}
 
-	run(speed) {
-		this.elements.forEach(element => element.run(speed));
+	run(speed, isIsolated) {
+		if (isIsolated) {
+			this.elements.forEach((element, ind) => element.run(speed[ind]));
+		} else {
+			this.elements.forEach(element => element.run(speed));
+		}
 	}
 
 	stop() {
 		this.elements.forEach(element => element.stop());
 	}
 
-	render(amount, speed) {
+	render(amount, speed, isIsolated) {
 		this.elements.forEach(element => element.remove());
 		this.elements = [];
 
-		while(amount--) {
-			const color = new Color();
-			color.render(this.node, speed);
-			this.elements.push(color);
+		if (isIsolated) {
+			this.elements = speed.map(s => {
+				const color = new Color();
+				color.render(this.node, s, isIsolated);
+				return color;
+			});
+
+		} else {
+			while(amount--) {
+				const color = new Color();
+				color.render(this.node, speed);
+				this.elements.push(color);
+			}
 		}
 	}
 }
