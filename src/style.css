@@ -44,7 +44,7 @@ body {
   flex-wrap: wrap;
   gap: 40px;
   padding: 30px 20px;
-  background: rgba(0, 0, 0, .5);
+  background: rgba(0, 0, 0, .6);
   color: white;
   transition: left .5s;
 }
@@ -143,4 +143,13 @@ body {
   text-align: right;
   background: rgba(0, 0, 0, .5);
   color: #7fff00;
+}
+
+.range__option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8em;
+  color: gray;
 }

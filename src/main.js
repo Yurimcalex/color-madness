@@ -35,3 +35,7 @@ controls.attachAction('amount', 'change', (e) => {
 controls.attachAction('open', 'click', () => {
   document.querySelector('.controls').classList.toggle('controls_hidden');
 });
+
+controls.attachAction('randomSpeed', 'change', (e) => {
+  console.log(e.target.checked);
+});
