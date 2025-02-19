@@ -9,9 +9,22 @@ const initalColorAmount = 7;
 const cssData = new CSSData();
 const colors = new Colors(document.querySelector('.page'));
 const controls = new Controls(cssData.transitionTime, initalColorAmount);
+
 const settings = {
-  amount: initalColorAmount
+  amount: initalColorAmount,
+  speeds: mapTransitionTime(initalColorAmount, cssData.transitionTime)
 };
+
+
+function mapTransitionTime(amount, speed) {
+  const speeds = [];
+  while (amount--) {
+    if (speed) speeds.push(speed);
+    else speeds.push(randomInt(1, 30) / 10);
+  }
+  return speeds;
+}
+
 
 colors.render(initalColorAmount, cssData.transitionTime);
 
@@ -37,11 +50,7 @@ controls.attachAction('amount', 'change', (e) => {
   const value = +e.target.value;
   cssData.setColorWidth(value);
   if (controls.randomSpeed.checked) {
-    let amount = value;
-    const speeds = [];
-    while(amount--) {
-      speeds.push(randomInt(1, 30) / 10);
-    }
+    const speeds = mapTransitionTime(value);
     colors.render(value, speeds, true);
     settings.speeds = speeds;
   } else {
@@ -57,11 +66,7 @@ controls.attachAction('open', 'click', () => {
 
 controls.attachAction('randomSpeed', 'change', (e) => {
   if (e.target.checked) {
-    let amount = settings.amount;
-    const speeds = [];
-    while(amount--) {
-      speeds.push(randomInt(1, 30) / 10);
-    }
+    const speeds = mapTransitionTime(settings.amount);
     colors.render(settings.amount, speeds, true);
     settings.speeds = speeds;
   } else {
