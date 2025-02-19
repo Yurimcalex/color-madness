@@ -2,17 +2,21 @@ import './style.css';
 import Colors from './Colors.js';
 import Controls from './Controls.js';
 import CSSData from './CSSData.js';
+import View from './View.js';
 import { randomInt } from './generateColor.js';
 
 
 const initalColorAmount = 7;
+const initialColorSpeed = 1;
 const cssData = new CSSData();
 const colors = new Colors(document.querySelector('.page'));
-const controls = new Controls(cssData.transitionTime, initalColorAmount);
+const controls = new Controls(initialColorSpeed, initalColorAmount);
+const view = new View(initialColorSpeed, initalColorAmount);
+
 
 const settings = {
   amount: initalColorAmount,
-  speeds: mapTransitionTime(initalColorAmount, cssData.transitionTime)
+  speeds: mapTransitionTime(initalColorAmount, initialColorSpeed)
 };
 
 
@@ -44,7 +48,7 @@ controls.attachAction('speed', 'input', (e) => {
   cssData.setTransitionTime(newSpeed);
   settings.speeds = mapTransitionTime(settings.amount, newSpeed);
   colors.render(settings.speeds);
-  document.getElementById('transition_speed_result').textContent = newSpeed.toFixed(2) + 's';
+  view.updateText('colorSpeed', `${newSpeed.toFixed(2)}s`);
 });
 
 
@@ -58,8 +62,8 @@ controls.attachAction('amount', 'change', (e) => {
   } else {
     colors.render(mapTransitionTime(colorAmount, cssData.transitionTime));
   }
-  document.getElementById('colors_number_result').textContent = colorAmount;
   settings.amount = colorAmount;
+  view.updateText('colorAmount', colorAmount);
 });
 
 
