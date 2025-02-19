@@ -10,6 +10,7 @@ export default class Controls {
 		this.randomSpeed = document.getElementById('transition_speed_random');
 		this.speed.value = transitionSpeed;
 		this.amount.value = colorAmount;
+		this.randomSpeed.checked = false;
 	}
 
 	attachAction(elementName, eventName, handler) {

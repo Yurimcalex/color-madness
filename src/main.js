@@ -2,17 +2,25 @@ import './style.css';
 import Colors from './Colors.js';
 import Controls from './Controls.js';
 import CSSData from './CSSData.js';
+import { randomInt } from './generateColor.js';
 
 
 const initalColorAmount = 7;
 const cssData = new CSSData();
 const colors = new Colors(document.querySelector('.page'));
 const controls = new Controls(cssData.transitionTime, initalColorAmount);
+const settings = {
+  amount: initalColorAmount
+};
 
 colors.render(initalColorAmount, cssData.transitionTime);
 
 controls.attachAction('start', 'click', () => {
-  colors.run(cssData.transitionTime);
+  if (controls.randomSpeed.checked) {
+    colors.run(settings.speeds, true);
+  } else {
+    colors.run(cssData.transitionTime);
+  }
 });
 
 controls.attachAction('stop', 'click', () => {
@@ -28,8 +36,19 @@ controls.attachAction('speed', 'input', (e) => {
 controls.attachAction('amount', 'change', (e) => {
   const value = +e.target.value;
   cssData.setColorWidth(value);
-  colors.render(value, cssData.transitionTime);
+  if (controls.randomSpeed.checked) {
+    let amount = value;
+    const speeds = [];
+    while(amount--) {
+      speeds.push(randomInt(1, 30) / 10);
+    }
+    colors.render(value, speeds, true);
+    settings.speeds = speeds;
+  } else {
+    colors.render(value, cssData.transitionTime);
+  }
   document.getElementById('colors_number_result').textContent = value;
+  settings.amount = value;
 });
 
 controls.attachAction('open', 'click', () => {
@@ -37,5 +56,15 @@ controls.attachAction('open', 'click', () => {
 });
 
 controls.attachAction('randomSpeed', 'change', (e) => {
-  console.log(e.target.checked);
+  if (e.target.checked) {
+    let amount = settings.amount;
+    const speeds = [];
+    while(amount--) {
+      speeds.push(randomInt(1, 30) / 10);
+    }
+    colors.render(settings.amount, speeds, true);
+    settings.speeds = speeds;
+  } else {
+    colors.render(settings.amount, cssData.transitionTime);
+  }
 });
