@@ -1,74 +1,29 @@
-import generateColor from './generateColor.js';
+//import generateColor from './generateColor.js';
+import Color from './Color.js';
 
 
 export default class Colors {
-	constructor() {
-		this.colorElements = [];
-		this.detachTransition = null;
-	}
-
-	setBackground(element) {
-	  element.style.background = `${generateColor()}`;
-	}
-
-	attachTransition() {
-		const callbacks = [];
-		for (let element of this.colorElements) {
-		  const callback = () => this.setBackground(element);
-		  element.addEventListener('transitionend', callback);
-		  callbacks.push(callback);
-		}
-		this.detachTransition = () => {
-		  for (let element of this.colorElements) {
-		    element.removeEventListener('transitionend', callbacks.shift());
-		  }
-		};
-	}
-
-	resetTransition() {
-		if (this.detachTransition) this.detachTransition();
-		this.detachTransition = null;
-	}
-
-	update() {
-	  for (let element of this.colorElements) {
-	    this.setBackground(element);
-	  }
-	}
-
-	remove() {
-	  for (let element of this.colorElements) {
-	    element.remove();
-	  }
-	  this.colorElements = [];
-	}
-
-	create(amount) {
-		const page = document.querySelector('.page');
-		while (amount--) {
-		  const div = document.createElement('div');
-		  div.classList.add('color');
-		  page.prepend(div);
-		  this.colorElements.push(div);
-		}
+	constructor(node) {
+		this.node = node;
+		this.elements = [];
 	}
 
 	run(speed) {
-		if (this.detachTransition) return;
-		this.attachTransition();
-		setTimeout(() => {
-			this.update();
-		}, speed + 100);
+		this.elements.forEach(element => element.run(speed));
 	}
 
 	stop() {
-		this.resetTransition();
+		this.elements.forEach(element => element.stop());
 	}
 
 	render(amount, speed) {
-		this.resetTransition();
-		this.remove();
-		this.create(amount);
-		this.run(speed);
+		this.elements.forEach(element => element.remove());
+		this.elements = [];
+
+		while(amount--) {
+			const color = new Color();
+			color.render(this.node, speed);
+			this.elements.push(color);
+		}
 	}
 }

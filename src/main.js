@@ -6,7 +6,7 @@ import CSSData from './CSSData.js';
 
 const initalColorAmount = 7;
 const cssData = new CSSData();
-const colors = new Colors();
+const colors = new Colors(document.querySelector('.page'));
 const controls = new Controls(cssData.transitionTime, initalColorAmount);
 
 colors.render(initalColorAmount, cssData.transitionTime);
