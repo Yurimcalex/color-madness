@@ -28,45 +28,50 @@ function mapTransitionTime(amount, speed) {
 
 colors.render(settings.speeds);
 
+
 controls.attachAction('start', 'click', () => {
   colors.run(settings.speeds);
 });
+
 
 controls.attachAction('stop', 'click', () => {
   colors.stop();
 });
 
+
 controls.attachAction('speed', 'input', (e) => {
-  const value = e.target.value;
-  cssData.setTransitionTime(+value);
-  settings.speeds = mapTransitionTime(settings.amount, +value);
+  const newSpeed = +e.target.value;
+  cssData.setTransitionTime(newSpeed);
+  settings.speeds = mapTransitionTime(settings.amount, newSpeed);
   colors.render(settings.speeds);
-  document.getElementById('transition_speed_result').textContent = Number(value).toFixed(2) + 's';
+  document.getElementById('transition_speed_result').textContent = newSpeed.toFixed(2) + 's';
 });
 
+
 controls.attachAction('amount', 'change', (e) => {
-  const value = +e.target.value;
-  cssData.setColorWidth(value);
-  if (controls.randomSpeed.checked) {
-    const speeds = mapTransitionTime(value);
-    colors.render(speeds, true);
-    settings.speeds = speeds;
+  const colorAmount = +e.target.value;
+  const isRandomSpeed = controls.randomSpeed.checked;
+  cssData.setColorWidth(colorAmount);
+  if (isRandomSpeed) {
+    settings.speeds = mapTransitionTime(colorAmount);
+    colors.render(settings.speeds, true);
   } else {
-    colors.render(mapTransitionTime(value, cssData.transitionTime));
+    colors.render(mapTransitionTime(colorAmount, cssData.transitionTime));
   }
-  document.getElementById('colors_number_result').textContent = value;
-  settings.amount = value;
+  document.getElementById('colors_number_result').textContent = colorAmount;
+  settings.amount = colorAmount;
 });
+
 
 controls.attachAction('open', 'click', () => {
   document.querySelector('.controls').classList.toggle('controls_hidden');
 });
 
+
 controls.attachAction('randomSpeed', 'change', (e) => {
   if (e.target.checked) {
-    const speeds = mapTransitionTime(settings.amount);
-    colors.render(speeds, true);
-    settings.speeds = speeds;
+    settings.speeds = mapTransitionTime(settings.amount);
+    colors.render(settings.speeds, true);
     controls.speed.disabled = true;
   } else {
     colors.render(settings.speeds);
