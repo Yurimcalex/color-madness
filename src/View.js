@@ -26,4 +26,21 @@ export default class View {
 	linear(nodes) {
 		nodes.forEach(node => this.container.prepend(node));
 	}
+
+	nested(nodes) {
+		for (var i = nodes.length - 1; i > -1; i -= 1) {
+		  const curr = nodes[i];
+		  const next = nodes[i + 1];
+		  if (next) {
+		  	curr.append(next);
+		  }
+		  applyStyle(curr);
+		}
+		this.container.prepend(nodes[0]);
+
+		function applyStyle(node) {
+			node.style.display = 'flex';
+			node.style.padding = '10px';
+		}
+	}
 }
