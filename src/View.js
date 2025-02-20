@@ -24,7 +24,19 @@ export default class View {
 	}
 
 	linear(nodes) {
-		nodes.forEach(node => this.container.prepend(node));
+		nodes.forEach(node => {
+			this.container.prepend(node);
+			applyStyle(node, nodes);
+		});
+
+		function applyStyle(node, nodes) {
+			const amount = nodes.length;
+			let width = 100;
+			if (amount <= 4) width = 50;
+			else if (amount <= 16) width = 25;
+			else width = 12;
+			node.style.flexBasis = width + '%';
+		}
 	}
 
 	nested(nodes) {

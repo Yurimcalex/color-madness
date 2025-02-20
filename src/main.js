@@ -1,14 +1,13 @@
 import './style.css';
 import Colors from './Colors.js';
 import Controls from './Controls.js';
-import CSSData from './CSSData.js';
 import View from './View.js';
 import { randomInt } from './generateColor.js';
 
 
 const initalColorAmount = 7;
 const initialColorSpeed = 1;
-const cssData = new CSSData();
+
 const colors = new Colors(document.querySelector('.page'));
 const controls = new Controls(initialColorSpeed, initalColorAmount);
 const view = new View(initialColorSpeed, initalColorAmount);
@@ -48,7 +47,6 @@ controls.attachAction('stop', 'click', () => {
 
 controls.attachAction('speed', 'input', (e) => {
   const newSpeed = +e.target.value;
-  //cssData.setTransitionTime(newSpeed);
   settings.speed = newSpeed;
   settings.speeds = mapTransitionTime(settings.amount, newSpeed);
   colors.render(settings.speeds);
@@ -60,7 +58,6 @@ controls.attachAction('speed', 'input', (e) => {
 controls.attachAction('amount', 'change', (e) => {
   const colorAmount = +e.target.value;
   const isRandomSpeed = controls.randomSpeed.checked;
-  cssData.setColorWidth(colorAmount);
   if (isRandomSpeed) {
     settings.speeds = mapTransitionTime(colorAmount);
     colors.render(settings.speeds);
