@@ -34,13 +34,16 @@ export default class View {
 		  if (next) {
 		  	curr.append(next);
 		  }
-		  applyStyle(curr);
+		  applyStyle(curr, nodes);
 		}
 		this.container.prepend(nodes[0]);
 
-		function applyStyle(node) {
+		function applyStyle(node, nodes) {
+			const fullHeight = window.innerHeight;
+			const availableHeight = fullHeight - 6 - 6 * nodes.length;
+			console.log(fullHeight, availableHeight);
 			node.style.display = 'flex';
-			node.style.padding = '10px';
+			node.style.padding = Math.floor((availableHeight / nodes.length) / 2) + 'px';
 		}
 	}
 }
