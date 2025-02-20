@@ -61,9 +61,10 @@ controls.attachAction('amount', 'change', (e) => {
   cssData.setColorWidth(colorAmount);
   if (isRandomSpeed) {
     settings.speeds = mapTransitionTime(colorAmount);
-    colors.render(settings.speeds, true);
+    colors.render(settings.speeds);
   } else {
-    colors.render(mapTransitionTime(colorAmount, cssData.transitionTime));
+    settings.speeds = mapTransitionTime(colorAmount, cssData.transitionTime);
+    colors.render(settings.speeds);
   }
   settings.amount = colorAmount;
   view.displayPattern(settings.pattern, colors.elements);
@@ -82,6 +83,7 @@ controls.attachAction('randomSpeed', 'change', (e) => {
     colors.render(settings.speeds, true);
     controls.speed.disabled = true;
   } else {
+    settings.speeds = mapTransitionTime(settings.amount, cssData.transitionTime);
     colors.render(settings.speeds);
     controls.speed.disabled = false;
   }

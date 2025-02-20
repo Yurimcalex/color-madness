@@ -14,13 +14,13 @@ export default class Colors {
 		this.elements.forEach(element => element.stop());
 	}
 
-	render(speeds, isIsolated) {
+	render(speeds) {
 		this.elements.forEach(element => element.remove());
 		this.elements = [];
 
 		this.elements = speeds.map(speed => {
 			const color = new Color();
-			color.render(speed, isIsolated);
+			color.render(speed);
 			return color;
 		});
 	}
