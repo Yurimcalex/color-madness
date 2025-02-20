@@ -94,9 +94,10 @@ controls.attachAction('randomSpeed', 'change', (e) => {
 
 controls.attachAction('pattern', 'change', (e) => {
   const pattern = e.target.value;
-  colors.render(settings.speeds);
-  view.displayPattern(pattern, colors.elements);
   settings.pattern = pattern;
+
+  colors.render(settings.speeds);
+  view.displayPattern(settings.pattern, colors.elements);
 });
 
 
