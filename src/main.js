@@ -96,3 +96,10 @@ controls.attachAction('pattern', 'change', (e) => {
   view.displayPattern(pattern, colors.elements);
   settings.pattern = pattern;
 });
+
+
+controls.attachAction('effect', 'change', (e) => {
+  const options = controls.effect.querySelectorAll('input');
+  const selected = Array.from(options).filter(option => option.checked);
+  selected.forEach(opt => console.log(opt.name));
+});
