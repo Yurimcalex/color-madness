@@ -8,9 +8,11 @@ export default class Controls {
 		this.amount = document.getElementById('colors_number');
 		this.open = document.querySelector('.controls__opener');
 		this.randomSpeed = document.getElementById('transition_speed_random');
+		this.pattern = document.querySelector('.radio');
 		this.speed.value = transitionSpeed;
 		this.amount.value = colorAmount;
 		this.randomSpeed.checked = false;
+		document.getElementById('linear_pattern').checked = true;
 	}
 
 	attachAction(elementName, eventName, handler) {

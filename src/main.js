@@ -82,3 +82,7 @@ controls.attachAction('randomSpeed', 'change', (e) => {
     controls.speed.disabled = false;
   }
 });
+
+controls.attachAction('pattern', 'change', (e) => {
+  console.log(e.target.value);
+});
