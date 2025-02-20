@@ -153,3 +153,35 @@ body {
   font-size: 0.8em;
   color: gray;
 }
+
+
+.radio {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.radio__item {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, .3);
+}
+
+.radio__label {
+  width: 100%;
+  margin-bottom: 10px;
+  font-style: italic;
+  font-size: 0.8em;
+  color: white;
+}
+
+.radio__name {
+  font-size: 0.8em;
+  color: #7fff00;
+}
+
+.radio_input {
+  margin: 0 0 0 5px;
+}
