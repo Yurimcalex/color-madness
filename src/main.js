@@ -15,6 +15,7 @@ const view = new View(initialColorSpeed, initalColorAmount);
 
 
 const settings = {
+  speed: initialColorSpeed,
   amount: initalColorAmount,
   speeds: mapTransitionTime(initalColorAmount, initialColorSpeed),
   pattern: 'linear'
@@ -47,7 +48,8 @@ controls.attachAction('stop', 'click', () => {
 
 controls.attachAction('speed', 'input', (e) => {
   const newSpeed = +e.target.value;
-  cssData.setTransitionTime(newSpeed);
+  //cssData.setTransitionTime(newSpeed);
+  settings.speed = newSpeed;
   settings.speeds = mapTransitionTime(settings.amount, newSpeed);
   colors.render(settings.speeds);
   view.displayPattern(settings.pattern, colors.elements);
@@ -63,7 +65,7 @@ controls.attachAction('amount', 'change', (e) => {
     settings.speeds = mapTransitionTime(colorAmount);
     colors.render(settings.speeds);
   } else {
-    settings.speeds = mapTransitionTime(colorAmount, cssData.transitionTime);
+    settings.speeds = mapTransitionTime(colorAmount, settings.speed);
     colors.render(settings.speeds);
   }
   settings.amount = colorAmount;
@@ -83,7 +85,7 @@ controls.attachAction('randomSpeed', 'change', (e) => {
     colors.render(settings.speeds, true);
     controls.speed.disabled = true;
   } else {
-    settings.speeds = mapTransitionTime(settings.amount, cssData.transitionTime);
+    settings.speeds = mapTransitionTime(settings.amount, settings.speed);
     colors.render(settings.speeds);
     controls.speed.disabled = false;
   }
