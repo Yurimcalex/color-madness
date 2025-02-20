@@ -3,6 +3,7 @@ export default class View {
 		this.container = document.querySelector('.page');
 		this.colorSpeed = document.getElementById('transition_speed_result');
 		this.colorAmount = document.getElementById('colors_number_result');
+		this.controls = document.querySelector('.controls');
 		this.updateText('colorAmount', `${amount}`);
 		this.updateText('colorSpeed', `${speed}s`);
 		this.elements = [];
@@ -10,6 +11,10 @@ export default class View {
 
 	updateText(elementName, newText) {
 		this[elementName].textContent = newText;
+	}
+
+	toggleControls() {
+		this.controls.classList.toggle('controls_hidden');
 	}
 
 	resetPattern() {

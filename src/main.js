@@ -49,7 +49,7 @@ controls.attachAction('speed', 'input', (e) => {
   const newSpeed = +e.target.value;
   settings.speed = newSpeed;
   settings.speeds = mapTransitionTime(settings.amount, newSpeed);
-  
+
   colors.render(settings.speeds);
   view.displayPattern(settings.pattern, colors.elements);
   view.updateText('colorSpeed', `${newSpeed.toFixed(2)}s`);
@@ -74,7 +74,7 @@ controls.attachAction('amount', 'change', (e) => {
 
 
 controls.attachAction('open', 'click', () => {
-  document.querySelector('.controls').classList.toggle('controls_hidden');
+  view.toggleControls();
 });
 
 
