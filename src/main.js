@@ -81,13 +81,13 @@ controls.attachAction('open', 'click', () => {
 controls.attachAction('randomSpeed', 'change', (e) => {
   if (e.target.checked) {
     settings.speeds = mapTransitionTime(settings.amount);
-    colors.render(settings.speeds, true);
     controls.speed.disabled = true;
   } else {
     settings.speeds = mapTransitionTime(settings.amount, settings.speed);
-    colors.render(settings.speeds);
     controls.speed.disabled = false;
   }
+
+  colors.render(settings.speeds);
   view.displayPattern(settings.pattern, colors.elements);
 });
 
