@@ -58,14 +58,15 @@ controls.attachAction('speed', 'input', (e) => {
 controls.attachAction('amount', 'change', (e) => {
   const colorAmount = +e.target.value;
   const isRandomSpeed = controls.randomSpeed.checked;
-  if (isRandomSpeed) {
-    settings.speeds = mapTransitionTime(colorAmount);
-    colors.render(settings.speeds);
-  } else {
-    settings.speeds = mapTransitionTime(colorAmount, settings.speed);
-    colors.render(settings.speeds);
-  }
   settings.amount = colorAmount;
+
+  if (isRandomSpeed) {
+    settings.speeds = mapTransitionTime(settings.amount);
+  } else {
+    settings.speeds = mapTransitionTime(settings.amount, settings.speed);
+  }
+  
+  colors.render(settings.speeds);
   view.displayPattern(settings.pattern, colors.elements);
   view.updateText('colorAmount', colorAmount);
 });
