@@ -2,8 +2,7 @@ import Color from './Color.js';
 
 
 export default class Colors {
-	constructor(node) {
-		this.node = node;
+	constructor() {
 		this.elements = [];
 	}
 
@@ -21,7 +20,7 @@ export default class Colors {
 
 		this.elements = speeds.map(speed => {
 			const color = new Color();
-			color.render(this.node, speed, isIsolated);
+			color.render(speed, isIsolated);
 			return color;
 		});
 	}
