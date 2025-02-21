@@ -1,34 +1,45 @@
 export default class Effect {
 	constructor() {
-		this.defaultEffect = 'background';
+		this.resets = [];
 	};
 
-	scaling(elements) {
+
+	scaling(element) {
+		const node = element.element;
+		let ratio = 1;
+		let flag = true;
+
+		setTimeout(() => {
+			node.style.transform = 'scale(0.9)';
+		}, node.speed + 100);
+
+		return () => {
+			node.style.transform = `scale(${ratio})`;
+			if (flag) {
+				ratio = 1;
+			} else {
+				ratio = 0.9;
+			}
+			flag = !flag;
+		};
+	}
+
+
+	run(effects, elements) {
+		this.stop();
+		const availableEffects = effects.filter(effect => this[effect]);
+
 		elements.forEach(element => {
 			const node = element.element;
-			let ratio = 1;
-			let flag = true;
-
-			node.style.transform = 'scale(1)';
-			node.style.transition = `transform ${element.speed}s`;
-
-			setTimeout(() => {
-				node.style.transform = 'scale(0.9)';
-			}, node.speed + 100);
-
-			node.addEventListener('transitionend', () => {
-				node.style.transform = `scale(${ratio})`;
-				if (flag) {
-					ratio = 0.9;
-				} else {
-					ratio = 1;
-				}
-				flag = !flag;
-			});
+			const handlers = availableEffects.map(effect => this[effect](element));
+			const handler = () => handlers.forEach(f => f());
+			node.addEventListener('transitionend', handler);
+			this.resets.push(() => node.removeEventListener('transitionend', handler));
 		});
 	}
 
-	create(effectName, elements) {
-		this[effectName](elements);
+
+	stop() {
+		this.resets.forEach(reset => reset());
 	}
 }
