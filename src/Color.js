@@ -53,5 +53,6 @@ export default class Color {
 	render(speed) {
 		this.create(speed);
 		this.run(speed);
+		this.speed = speed;
 	}
 }
