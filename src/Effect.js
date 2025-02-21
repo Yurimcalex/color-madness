@@ -7,37 +7,29 @@ export default class Effect {
 		this.defaultEffect = 'backgrounding';
 	};
 
-	backgrounding(element) {
-		const node = element.element;
-		setTimeout(() => {
-			node.style.background = `${generateColor()}`;
-		}, node.speed + 100);
-		return () => {
-			node.style.background = `${generateColor()}`;
-		};
+	backgrounding(node) {
+		node.style.background = `${generateColor()}`;
 	}
 
-	scaling(element) {
-		const node = element.element;
-		setTimeout(() => {
-			node.classList.toggle('color__scale');
-		}, node.speed + 100);
-		return () => {
-			node.classList.toggle('color__scale');
-		};
+	scaling(node) {
+		node.classList.toggle('color__scale');
 	}
+
 
 	run(effects, elements) {
-		this.stop();
 		const availableEffects = effects.filter(effect => this[effect]);
-		availableEffects.push(this.defaultEffect);
-
+		availableEffects.unshift(this.defaultEffect);
 
 		elements.forEach(element => {
 			const node = element.element;
-			const handlers = availableEffects.map(effect => this[effect](element));
+			const handlers = availableEffects.map(effect => this[effect]);
+
+			setTimeout(() => {
+				handlers.forEach(f => f(node));
+			}, element.speed * 1000 + 100);
+
 			const handler = (e) => {
-				if (e.propertyName === 'background-color') handlers.forEach(f => f())
+				if (e.propertyName === 'background-color') handlers.forEach(f => f(node))
 			};
 
 			node.addEventListener('transitionend', handler);
@@ -45,7 +37,9 @@ export default class Effect {
 		});
 	}
 
+
 	stop() {
 		this.resets.forEach(reset => reset());
+		this.resets = [];
 	}
 }
