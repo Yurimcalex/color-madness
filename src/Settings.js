@@ -8,6 +8,7 @@ export default class Settings {
 		this.speeds = [];
 		this.isRandomSpeed = false;
 		this.pattern = 'linear';
+		this.effects = [];
 		this.updateSpeeds();
 	}
 
