@@ -18,16 +18,17 @@ const effect = new Effect();
 
 colors.render(settings.speeds);
 view.displayPattern(settings.pattern, colors.elements);
+effect.run(settings.effects, colors.elements);
 
 
 controls.attachAction('start', 'click', () => {
-  colors.run(settings.speeds);
+  colors.render(settings.speeds);
+  view.displayPattern(settings.pattern, colors.elements);
   effect.run(settings.effects, colors.elements);
 });
 
 
 controls.attachAction('stop', 'click', () => {
-  colors.stop();
   effect.stop();
 });
 
