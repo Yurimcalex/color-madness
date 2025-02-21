@@ -3,6 +3,7 @@ import Colors from './Colors.js';
 import Controls from './Controls.js';
 import View from './View.js';
 import Settings from './Settings.js';
+import Effect from './Effect.js';
 
 
 const initalColorAmount = 7;
@@ -12,6 +13,7 @@ const colors = new Colors(document.querySelector('.page'));
 const controls = new Controls(initialColorSpeed, initalColorAmount);
 const view = new View(initialColorSpeed, initalColorAmount);
 const settings = new Settings(initialColorSpeed, initalColorAmount);
+const effect = new Effect();
 
 
 colors.render(settings.speeds);
@@ -74,5 +76,11 @@ controls.attachAction('pattern', 'change', (e) => {
 controls.attachAction('effect', 'change', (e) => {
   const options = controls.effect.querySelectorAll('input');
   const selected = Array.from(options).filter(option => option.checked);
-  selected.forEach(opt => console.log(opt.name));
+  
+  colors.render(settings.speeds);
+  view.displayPattern(settings.pattern, colors.elements);
+
+  selected.forEach(opt => {
+    effect.create(opt.name, colors.elements);
+  });
 });
