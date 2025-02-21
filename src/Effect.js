@@ -19,19 +19,11 @@ export default class Effect {
 
 	scaling(element) {
 		const node = element.element;
-		let ratio = 1;
-		let flag = true;
 		setTimeout(() => {
-			node.style.transform = 'scale(0.9)';
+			node.classList.toggle('color__scale');
 		}, node.speed + 100);
 		return () => {
-			node.style.transform = `scale(${ratio})`;
-			if (flag) {
-				ratio = 1;
-			} else {
-				ratio = 0.9;
-			}
-			flag = !flag;
+			node.classList.toggle('color__scale');
 		};
 	}
 
