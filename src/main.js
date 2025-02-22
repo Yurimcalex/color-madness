@@ -16,15 +16,18 @@ const settings = new Settings(initialColorSpeed, initalColorAmount);
 const effect = new Effect();
 
 
-colors.render(settings.speeds);
-view.displayPattern(settings.pattern, colors.elements);
-effect.run(settings.effects, colors.elements);
-
-
-controls.attachAction('start', 'click', () => {
+function render() {
   colors.render(settings.speeds);
   view.displayPattern(settings.pattern, colors.elements);
   effect.run(settings.effects, colors.elements);
+}
+
+
+render();
+
+
+controls.attachAction('start', 'click', () => {
+  render();
 });
 
 
@@ -36,9 +39,7 @@ controls.attachAction('stop', 'click', () => {
 controls.attachAction('speed', 'input', (e) => {
   const newSpeed = +e.target.value;
   settings.setValue('speed', newSpeed);
-  colors.render(settings.speeds);
-  view.displayPattern(settings.pattern, colors.elements);
-  effect.run(settings.effects, colors.elements);
+  render();
   view.updateText('colorSpeed', `${newSpeed.toFixed(2)}s`);
 });
 
@@ -46,9 +47,7 @@ controls.attachAction('speed', 'input', (e) => {
 controls.attachAction('amount', 'change', (e) => {
   const colorAmount = +e.target.value;
   settings.setValue('amount', colorAmount);
-  colors.render(settings.speeds);
-  view.displayPattern(settings.pattern, colors.elements);
-  effect.run(settings.effects, colors.elements);
+  render();
   view.updateText('colorAmount', colorAmount);
 });
 
@@ -65,18 +64,14 @@ controls.attachAction('randomSpeed', 'change', (e) => {
     controls.speed.disabled = false;
   }
   settings.setValue('isRandomSpeed', e.target.checked);
-  colors.render(settings.speeds);
-  view.displayPattern(settings.pattern, colors.elements);
-  effect.run(settings.effects, colors.elements);
+  render();
 });
 
 
 controls.attachAction('pattern', 'change', (e) => {
   const pattern = e.target.value;
   settings.setValue('pattern', pattern);
-  colors.render(settings.speeds);
-  view.displayPattern(settings.pattern, colors.elements);
-  effect.run(settings.effects, colors.elements);
+  render();
 });
 
 
@@ -85,8 +80,5 @@ controls.attachAction('effect', 'change', (e) => {
   const selected = Array.from(options).filter(option => option.checked);
   const effects = selected.map(opt => opt.name);
   settings.setValue('effects', effects);
-  
-  colors.render(settings.speeds);
-  view.displayPattern(settings.pattern, colors.elements);
-  effect.run(settings.effects, colors.elements);
+  render();
 });
