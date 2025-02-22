@@ -22,6 +22,7 @@ body {
   align-items: stretch;
   border: 3px solid black;
   background: black;
+  overflow: hidden;
 }
 
 
@@ -29,12 +30,16 @@ body {
   border: 3px solid black;
   border-radius: 5px;
   flex: var(--width) 1 0;
-  transform: scale(1);
+  /*transform: scale(1) rotate(0deg);*/
   transition: all var(--timer);
 }
 
 .color__scale {
   transform: scale(0.9);
+}
+
+.color__rotate {
+  transform: rotate(360deg);
 }
 
 

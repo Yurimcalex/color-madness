@@ -15,6 +15,10 @@ export default class Effect {
 		node.classList.toggle('color__scale');
 	}
 
+	rotating(node) {
+		node.classList.toggle('color__rotate');
+	}
+
 
 	run(effects, elements) {
 		const availableEffects = effects.filter(effect => this[effect]);
