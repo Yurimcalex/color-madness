@@ -12,53 +12,55 @@
 
 
       <div class="controls controls_hidden">
-        <div class="controls__item range">
-          <label  class="range__label" for="transition_speed">Set color change speed:</label>
-          <span class="range__value">0.1</span>
-          <input class="range__input" id="transition_speed" type="range" value="1" min="0.1" max="3" step="any" />
-          <span class="range__value">3</span>
-          <span id="transition_speed_result" class="range__result">1.00s</span>
-          <div class="range__option">
-            <span>Set random speed:</span>
-            <input id="transition_speed_random" type="checkbox" />
+        <div class="controls__wrapper">
+          <div class="controls__item range">
+            <label  class="range__label" for="transition_speed">Set color change speed:</label>
+            <span class="range__value">0.1</span>
+            <input class="range__input" id="transition_speed" type="range" value="1" min="0.1" max="3" step="any" />
+            <span class="range__value">3</span>
+            <span id="transition_speed_result" class="range__result">1.00s</span>
+            <div class="range__option">
+              <span>Set random speed:</span>
+              <input id="transition_speed_random" type="checkbox" />
+            </div>
           </div>
-        </div>
 
-        <div class="controls__item range">
-          <label  class="range__label" for="colors_number">Set the number of colors:</label>
-          <span class="range__value">1</span>
-          <input class="range__input" id="colors_number" type="range" value="1" min="1" max="64" step="1"/>
-          <span class="range__value">64</span>
-          <span id="colors_number_result" class="range__result">7</span>
-        </div>
+          <div class="controls__item range">
+            <label  class="range__label" for="colors_number">Set the number of colors:</label>
+            <span class="range__value">1</span>
+            <input class="range__input" id="colors_number" type="range" value="1" min="1" max="64" step="1"/>
+            <span class="range__value">64</span>
+            <span id="colors_number_result" class="range__result">7</span>
+          </div>
 
-        <div class="controls__item radio">
-          <span class="radio__label">Select a color placement pattern:</span>
-          <div class="radio__item">
-            <label for="linear_pattern" class="radio__name">Linear:</label>
-            <input id="linear_pattern" class="radio_input" type="radio" name="pattern" value="linear" />
+          <div class="controls__item radio">
+            <span class="radio__label">Select a color placement pattern:</span>
+            <div class="radio__item">
+              <label for="linear_pattern" class="radio__name">Linear:</label>
+              <input id="linear_pattern" class="radio_input" type="radio" name="pattern" value="linear" />
+            </div>
+            <div class="radio__item">
+              <label for="nested_pattern" class="radio__name">Nested:</label>
+              <input id="nested_pattern" class="radio_input" type="radio" name="pattern" value="nested" />
+            </div>
           </div>
-          <div class="radio__item">
-            <label for="nested_pattern" class="radio__name">Nested:</label>
-            <input id="nested_pattern" class="radio_input" type="radio" name="pattern" value="nested" />
-          </div>
-        </div>
 
-        <div class="controls__item radio effect">
-          <span class="radio__label">Select a visual effect:</span>
-          <div class="radio__item">
-            <label for="scaling_effect" class="radio__name">Scaling:</label>
-            <input id="scaling_effect" class="radio_input" type="checkbox" name="scaling" />
+          <div class="controls__item radio effect">
+            <span class="radio__label">Select a visual effect:</span>
+            <div class="radio__item">
+              <label for="scaling_effect" class="radio__name">Scaling:</label>
+              <input id="scaling_effect" class="radio_input" type="checkbox" name="scaling" />
+            </div>
+            <div class="radio__item">
+              <label for="rotating_effect" class="radio__name">Rotating:</label>
+              <input id="rotating_effect" class="radio_input" type="checkbox" name="rotating" />
+            </div>
           </div>
-          <div class="radio__item">
-            <label for="rotating_effect" class="radio__name">Rotating:</label>
-            <input id="rotating_effect" class="radio_input" type="checkbox" name="rotating" />
-          </div>
-        </div>
 
-        <div class="controls__item controls__item_last">
-          <button class="controls__start">Start</button>
-          <button class="controls__stop">Stop</button>
+          <div class="controls__item controls__item_last">
+            <button class="controls__start">Start</button>
+            <button class="controls__stop">Stop</button>
+          </div>
         </div>
 
         <div class="controls__opener">
